@@ -1,27 +1,32 @@
-import { Body, Controller, Get, Param, ParseIntPipe, Post } from "@nestjs/common";
+import { Body, ClassSerializerInterceptor, Controller, Get, Param, ParseIntPipe, Post, UseInterceptors } from "@nestjs/common";
 import { UserService } from "./user.service";
 import { CreateUserDao } from "./dto/createuserdao";
-import { ApiSecurity, ApiTags } from "@nestjs/swagger";
+import { ApiOperation, ApiSecurity, ApiTags } from "@nestjs/swagger";
 
 @Controller("/users")
 @ApiTags("Users Apis.")
 @ApiSecurity("JWT-auth")
 export class UserController {
 
-    
+  
     constructor(private readonly userService: UserService){}
 
     @Post("/register")
+    @ApiOperation({ summary: 'Api to Register a user into the system.' })
     register(@Body() createuserDao:CreateUserDao){
         return this.userService.register(createuserDao);
     }
 
     @Get("/fetch")
+    @ApiOperation({ summary: 'Api to Fetch the Registered users.' })
+    @UseInterceptors(ClassSerializerInterceptor)
     getAll(){
         return this.userService.getAll();
     }
 
+
     @Get("/remove/:id")
+    @ApiOperation({ summary: 'Api to Remove Registered users.' })
     remove(@Param("id",ParseIntPipe) id:number){
         return this.userService.remove(id);
     }

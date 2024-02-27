@@ -3,7 +3,8 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { User } from "./entities/user.entity";
 import { Repository } from "typeorm";
 
-import {compare , hash}from "bcrypt"
+import { hash}from "bcrypt"
+
 
 @Injectable()
 export class UserService{
@@ -36,6 +37,8 @@ export class UserService{
         return this.userRepo.delete(id);
   
     }
+
+  
 
     
 }

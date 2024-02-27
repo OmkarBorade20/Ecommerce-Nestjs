@@ -12,9 +12,9 @@ export class TokenValidation implements NestMiddleware{
         if(token==undefined)
             throw new BadRequestException("Kindly Pass the Token in Headers.")
 
-            let data=verify(token,process.env.JWT_TOKEN);
+        let data=verify(token,process.env.JWT_TOKEN);
 
-            req['user']=data.data;
+        req['user']=data.data;
         next();
     } 
 

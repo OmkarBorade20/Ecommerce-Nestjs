@@ -1,15 +1,17 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Product } from './entities/product.entity';
 import { Repository } from 'typeorm';
 import { ProductRepository } from './repo/product.repository';
+import { CACHE_MANAGER } from '@nestjs/cache-manager';
+import { Cron } from '@nestjs/schedule';
 
 @Injectable()
 export class ProductsService {
 
-  constructor (@InjectRepository(Product) private readonly productRepo:Repository<Product>){}
+  constructor (@Inject(CACHE_MANAGER) private cacheManager,@InjectRepository(Product) private readonly productRepo:Repository<Product>){}
 //constructor(private readonly productRepo :ProductRepository){}
 
   create(createProductDto: CreateProductDto) {
@@ -23,6 +25,7 @@ export class ProductsService {
   }
 
   findAll():Promise<Product[]> {
+    console.log("First")
     return this.productRepo.find();
   }
 
@@ -44,6 +47,12 @@ export class ProductsService {
   remove(id: number) {
     return this.productRepo.delete(id);;
   }
+
+  // @Cron('10 * * * * *')
+  // async CronSchedular(){
+  //     //let data =await this.productRepo.find();
+  //     console.log("Cron Running !.\n")
+  // }
 
   // findbyTitle(title:string)
   // {

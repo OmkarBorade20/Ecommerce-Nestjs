@@ -5,6 +5,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './modules/auth/auth.module';
 import { TokenValidation } from './middlewares/tokenvalidation.middleware';
 import { ProductsModule } from './modules/products/products.module';
+import {  CacheModule } from '@nestjs/cache-manager';
+import { ScheduleModule } from '@nestjs/schedule';
+import { OrdersModule } from './modules/orders/orders.module';
 
 @Module({
   imports: [
@@ -24,9 +27,16 @@ import { ProductsModule } from './modules/products/products.module';
       "database": "test",
       "entities": [__dirname+'/**/*.entity{.ts,.js}'],
       "synchronize":true,
-      "logging":true
+      // "logging":true
+
     }),
-    UserModule,AuthModule, ProductsModule
+    CacheModule.register({
+      ttl: 10000,
+      isGlobal:true
+
+    }),
+    ScheduleModule.forRoot(),
+    UserModule,AuthModule, ProductsModule, OrdersModule
   ],
   controllers: [],
   providers: [],
