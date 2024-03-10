@@ -17,7 +17,7 @@ export class ProductsController {
   count=0;
   constructor(private readonly productsService: ProductsService) {}
 
-  @Roles(['admin'])
+  @Roles(['Admin'])
   @Post("/add")
   @ApiOperation({ summary: 'Api to Add Products.' })
   // @UseGuards( Freeze)  //this will freeze all body params or queries present.

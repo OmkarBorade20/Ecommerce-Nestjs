@@ -18,6 +18,7 @@ const orders_service_1 = require("./orders.service");
 const create_order_dto_1 = require("./dto/create-order.dto");
 const update_order_dto_1 = require("./dto/update-order.dto");
 const swagger_1 = require("@nestjs/swagger");
+const roles_decorators_1 = require("../../decorators/roles.decorators");
 let OrdersController = class OrdersController {
     constructor(ordersService) {
         this.ordersService = ordersService;
@@ -40,6 +41,7 @@ let OrdersController = class OrdersController {
 };
 exports.OrdersController = OrdersController;
 __decorate([
+    (0, roles_decorators_1.Roles)(['User']),
     (0, common_1.Post)("create"),
     (0, swagger_1.ApiOperation)({ summary: 'Creates Orders.' }),
     __param(0, (0, common_1.Body)()),

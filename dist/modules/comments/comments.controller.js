@@ -18,6 +18,7 @@ const comments_service_1 = require("./comments.service");
 const create_comment_dto_1 = require("./dto/create-comment.dto");
 const update_comment_dto_1 = require("./dto/update-comment.dto");
 const swagger_1 = require("@nestjs/swagger");
+const roles_decorators_1 = require("../../decorators/roles.decorators");
 let CommentsController = class CommentsController {
     constructor(commentsService) {
         this.commentsService = commentsService;
@@ -43,6 +44,7 @@ let CommentsController = class CommentsController {
 };
 exports.CommentsController = CommentsController;
 __decorate([
+    (0, roles_decorators_1.Roles)(['User']),
     (0, common_1.Post)("/add"),
     (0, swagger_1.ApiOperation)({ summary: 'Api to Add Comments to Products .' }),
     __param(0, (0, common_1.Body)()),

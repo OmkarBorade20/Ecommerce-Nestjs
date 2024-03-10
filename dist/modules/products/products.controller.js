@@ -43,7 +43,7 @@ let ProductsController = class ProductsController {
 };
 exports.ProductsController = ProductsController;
 __decorate([
-    (0, roles_decorators_1.Roles)(['admin']),
+    (0, roles_decorators_1.Roles)(['Admin']),
     (0, common_1.Post)("/add"),
     (0, swagger_1.ApiOperation)({ summary: 'Api to Add Products.' }),
     __param(0, (0, common_1.Body)()),

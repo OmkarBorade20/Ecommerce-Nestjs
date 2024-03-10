@@ -56,6 +56,10 @@ exports.AppModule = AppModule = __decorate([
         controllers: [],
         providers: [
             {
+                provide: core_1.APP_GUARD,
+                useClass: role_guard_1.RoleAuthenticationGuard
+            },
+            {
                 provide: core_1.APP_FILTER,
                 useClass: typeORMQueryException_filter_1.TypeORMQueryExceptionFilter
             },
@@ -63,10 +67,6 @@ exports.AppModule = AppModule = __decorate([
                 provide: core_1.APP_FILTER,
                 useClass: exceptionHandler_filter_1.ExceptionHandler
             },
-            {
-                provide: core_1.APP_GUARD,
-                useClass: role_guard_1.AuthenticationGuard
-            }
         ]
     })
 ], AppModule);

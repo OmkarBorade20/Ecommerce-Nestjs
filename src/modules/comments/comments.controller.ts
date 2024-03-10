@@ -4,6 +4,7 @@ import { CreateCommentDto } from './dto/create-comment.dto';
 import { UpdateCommentDto } from './dto/update-comment.dto';
 import { ApiOperation, ApiSecurity, ApiTags } from '@nestjs/swagger';
 import { Request } from 'express';
+import { Roles } from 'src/decorators/roles.decorators';
 
 @ApiTags("Comments Controller.")
 @ApiSecurity("JWT-auth")
@@ -11,6 +12,7 @@ import { Request } from 'express';
 export class CommentsController {
   constructor(private readonly commentsService: CommentsService) {}
 
+  @Roles(['User'])
   @Post("/add")
   @ApiOperation({ summary: 'Api to Add Comments to Products .' })
   create(@Body() createCommentDto: CreateCommentDto) {

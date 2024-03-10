@@ -9,10 +9,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AuthenticationGuard = void 0;
+exports.RoleAuthenticationGuard = void 0;
 const common_1 = require("@nestjs/common");
+const core_1 = require("@nestjs/core");
 const roles_decorators_1 = require("../decorators/roles.decorators");
-let AuthenticationGuard = class AuthenticationGuard {
+let RoleAuthenticationGuard = class RoleAuthenticationGuard {
     constructor(reflector) {
         this.reflector = reflector;
     }
@@ -31,9 +32,9 @@ let AuthenticationGuard = class AuthenticationGuard {
             return false;
     }
 };
-exports.AuthenticationGuard = AuthenticationGuard;
-exports.AuthenticationGuard = AuthenticationGuard = __decorate([
+exports.RoleAuthenticationGuard = RoleAuthenticationGuard;
+exports.RoleAuthenticationGuard = RoleAuthenticationGuard = __decorate([
     (0, common_1.Injectable)(),
-    __metadata("design:paramtypes", [Object])
-], AuthenticationGuard);
+    __metadata("design:paramtypes", [core_1.Reflector])
+], RoleAuthenticationGuard);
 //# sourceMappingURL=role.guard.js.map

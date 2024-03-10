@@ -15,7 +15,7 @@ import { TypeORMQueryExceptionFilter } from './Filters/typeORMQueryException.fil
 import { AddressesModule } from './modules/addresses/addresses.module';
 import { InternalServerErrorExceptionFilter } from './Filters/InternalServerError.filter';
 import { AllExceptionsFilter } from './Filters/globalExceptionHandler.filter';
-import { AuthenticationGuard } from './guards/role.guard';
+import { RoleAuthenticationGuard } from './guards/role.guard';
 
 
 @Module({
@@ -49,6 +49,11 @@ import { AuthenticationGuard } from './guards/role.guard';
   ],
   controllers: [],
   providers: [
+
+    {
+      provide:APP_GUARD,
+      useClass:RoleAuthenticationGuard
+    },
     {
       provide:APP_FILTER,
       useClass:TypeORMQueryExceptionFilter
@@ -65,10 +70,7 @@ import { AuthenticationGuard } from './guards/role.guard';
   //   provide:APP_FILTER,
   //   useClass:AllExceptionsFilter
   // }
-  {
-    provide:APP_GUARD,
-    useClass:AuthenticationGuard
-  }
+
 
  
 ]
