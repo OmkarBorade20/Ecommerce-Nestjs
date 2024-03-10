@@ -4,7 +4,7 @@ import { CreateOrderDto } from './dto/create-order.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
 import {  ApiOperation, ApiSecurity, ApiTags } from '@nestjs/swagger';
 
-@ApiTags("Orders Api.")
+@ApiTags("Orders Controller.")
 @ApiSecurity("JWT-auth")
 @Controller('orders')
 export class OrdersController {

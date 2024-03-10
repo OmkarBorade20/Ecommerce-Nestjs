@@ -4,7 +4,7 @@ import { CreateUserDao } from "./dto/createuserdao";
 import { ApiOperation, ApiSecurity, ApiTags } from "@nestjs/swagger";
 
 @Controller("/users")
-@ApiTags("Users Apis.")
+@ApiTags("Users Controllers.")
 @ApiSecurity("JWT-auth")
 export class UserController {
 

@@ -80,7 +80,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], OrdersController.prototype, "remove", null);
 exports.OrdersController = OrdersController = __decorate([
-    (0, swagger_1.ApiTags)("Orders Api."),
+    (0, swagger_1.ApiTags)("Orders Controller."),
     (0, swagger_1.ApiSecurity)("JWT-auth"),
     (0, common_1.Controller)('orders'),
     __metadata("design:paramtypes", [orders_service_1.OrdersService])

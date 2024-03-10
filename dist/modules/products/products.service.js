@@ -29,11 +29,14 @@ let ProductsService = class ProductsService {
         product.description = createProductDto.description;
         product.imgurl = createProductDto.imgurl;
         product.price = createProductDto.price;
+        product.comments = [];
         return this.productRepo.save(product);
     }
     findAll() {
         console.log("First");
-        return this.productRepo.find();
+        return this.productRepo.find({ relations: {
+                comments: true
+            } });
     }
     findOne(id) {
         return this.productRepo.findBy({ "id": id });

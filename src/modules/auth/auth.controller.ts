@@ -4,7 +4,7 @@ import { AuthService } from "./auth.service";
 import { ApiOperation, ApiTags } from "@nestjs/swagger";
 
 @Controller("/auth")
-@ApiTags("Authentication Apis.")
+@ApiTags("Authentication Controllers.")
 export class AuthController{
 
     

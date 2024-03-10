@@ -8,7 +8,7 @@ export class TokenValidation implements NestMiddleware{
 
     use(req: Request, res: Response, next: NextFunction) {
 
-        let token=req?.headers['authorization']?.split(' ')[1];
+        let token:string=req?.headers['authorization']?.split(' ')[1];
         if(token==undefined)
             throw new BadRequestException("Kindly Pass the Token in Headers.")
 

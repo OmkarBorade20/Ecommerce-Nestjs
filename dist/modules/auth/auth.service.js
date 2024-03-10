@@ -18,17 +18,20 @@ const jsonwebtoken_1 = require("jsonwebtoken");
 const typeorm_1 = require("@nestjs/typeorm");
 const user_entity_1 = require("../users/entities/user.entity");
 const typeorm_2 = require("typeorm");
+const bcrypt_1 = require("bcrypt");
 let AuthService = class AuthService {
     constructor(userRepo) {
         this.userRepo = userRepo;
     }
     generateTokens(data) {
         return {
-            "message": `Welcome ${data.email} !.`,
-            "data": {
-                "token": (0, jsonwebtoken_1.sign)({ "data": data }, process.env.JWT_TOKEN, { expiresIn: '1H' }),
-                "refresh_token": (0, jsonwebtoken_1.sign)({ "data": data }, process.env.JWT_REFRESH_TOKEN, { expiresIn: '1M' })
-            }
+            message: `Welcome ${data.email} !.`,
+            data: {
+                token: (0, jsonwebtoken_1.sign)({ data: data }, process.env.JWT_TOKEN, { expiresIn: '1H' }),
+                refresh_token: (0, jsonwebtoken_1.sign)({ data: data }, process.env.JWT_REFRESH_TOKEN, {
+                    expiresIn: '1M',
+                }),
+            },
         };
     }
     validateUser(token, secret) {
@@ -37,12 +40,17 @@ let AuthService = class AuthService {
             return data.data;
         }
         catch (e) {
-            throw new common_1.UnauthorizedException("Pass in a Valid Refresh Token.!");
+            throw new common_1.UnauthorizedException('Pass in a Valid Refresh Token.!');
         }
     }
     async login(userData) {
-        let user = await this.userRepo.findBy({ "email": userData.email });
-        console.log("user", user);
+        let user = await this.userRepo.findBy({ email: userData.email });
+        console.log('user', user);
+        if (user.length == 0)
+            throw new common_1.NotFoundException('User is Not Present in System.');
+        let check = await (0, bcrypt_1.compare)(userData.password, user[0].password);
+        if (!check)
+            throw new common_1.UnauthorizedException('Kindly Check Your Credentials.!');
         return this.generateTokens(user[0]);
     }
     refreshToken(token) {

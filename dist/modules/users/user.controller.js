@@ -58,7 +58,7 @@ __decorate([
 ], UserController.prototype, "remove", null);
 exports.UserController = UserController = __decorate([
     (0, common_1.Controller)("/users"),
-    (0, swagger_1.ApiTags)("Users Apis."),
+    (0, swagger_1.ApiTags)("Users Controllers."),
     (0, swagger_1.ApiSecurity)("JWT-auth"),
     __metadata("design:paramtypes", [user_service_1.UserService])
 ], UserController);

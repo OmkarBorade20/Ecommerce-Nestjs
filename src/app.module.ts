@@ -8,6 +8,15 @@ import { ProductsModule } from './modules/products/products.module';
 import {  CacheModule } from '@nestjs/cache-manager';
 import { ScheduleModule } from '@nestjs/schedule';
 import { OrdersModule } from './modules/orders/orders.module';
+import { CommentsModule } from './modules/comments/comments.module';
+import { APP_FILTER, APP_GUARD } from '@nestjs/core';
+import { ExceptionHandler } from './Filters/exceptionHandler.filter';
+import { TypeORMQueryExceptionFilter } from './Filters/typeORMQueryException.filter';
+import { AddressesModule } from './modules/addresses/addresses.module';
+import { InternalServerErrorExceptionFilter } from './Filters/InternalServerError.filter';
+import { AllExceptionsFilter } from './Filters/globalExceptionHandler.filter';
+import { AuthenticationGuard } from './guards/role.guard';
+
 
 @Module({
   imports: [
@@ -27,7 +36,7 @@ import { OrdersModule } from './modules/orders/orders.module';
       "database": "test",
       "entities": [__dirname+'/**/*.entity{.ts,.js}'],
       "synchronize":true,
-      // "logging":true
+       //"logging":true
 
     }),
     CacheModule.register({
@@ -36,15 +45,41 @@ import { OrdersModule } from './modules/orders/orders.module';
 
     }),
     ScheduleModule.forRoot(),
-    UserModule,AuthModule, ProductsModule, OrdersModule
+    AuthModule,UserModule,AddressesModule, ProductsModule, OrdersModule, CommentsModule,
   ],
   controllers: [],
-  providers: [],
+  providers: [
+    {
+      provide:APP_FILTER,
+      useClass:TypeORMQueryExceptionFilter
+    },
+    {
+    provide:APP_FILTER,
+    useClass:ExceptionHandler
+  },
+  // {
+  //   provide:APP_FILTER,
+  //   useClass:InternalServerErrorExceptionFilter
+  // }
+  // {
+  //   provide:APP_FILTER,
+  //   useClass:AllExceptionsFilter
+  // }
+  {
+    provide:APP_GUARD,
+    useClass:AuthenticationGuard
+  }
+
+ 
+]
+
+
+
 })
 export class AppModule implements NestModule {
   
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply(TokenValidation).forRoutes('users','products')
+    consumer.apply(TokenValidation).forRoutes('addresses','products','orders','comments')
   }
  
 }

@@ -4,10 +4,14 @@ const core_1 = require("@nestjs/core");
 const app_module_1 = require("./app.module");
 const helmet_1 = require("helmet");
 const swagger_1 = require("@nestjs/swagger");
+const logging_intercepotr_1 = require("./interceptors/logging.intercepotr");
+const common_1 = require("@nestjs/common");
 async function bootstrap() {
     const app = await core_1.NestFactory.create(app_module_1.AppModule);
     app.enableCors();
     app.use((0, helmet_1.default)());
+    app.useGlobalInterceptors(new logging_intercepotr_1.logging());
+    app.useGlobalPipes(new common_1.ValidationPipe());
     const config = new swagger_1.DocumentBuilder()
         .setTitle('Ecommerce Backend APIS')
         .setDescription('Ecommerce App API Descriptions.')

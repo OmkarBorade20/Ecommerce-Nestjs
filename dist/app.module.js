@@ -17,9 +17,15 @@ const products_module_1 = require("./modules/products/products.module");
 const cache_manager_1 = require("@nestjs/cache-manager");
 const schedule_1 = require("@nestjs/schedule");
 const orders_module_1 = require("./modules/orders/orders.module");
+const comments_module_1 = require("./modules/comments/comments.module");
+const core_1 = require("@nestjs/core");
+const exceptionHandler_filter_1 = require("./Filters/exceptionHandler.filter");
+const typeORMQueryException_filter_1 = require("./Filters/typeORMQueryException.filter");
+const addresses_module_1 = require("./modules/addresses/addresses.module");
+const role_guard_1 = require("./guards/role.guard");
 let AppModule = class AppModule {
     configure(consumer) {
-        consumer.apply(tokenvalidation_middleware_1.TokenValidation).forRoutes('users', 'products');
+        consumer.apply(tokenvalidation_middleware_1.TokenValidation).forRoutes('addresses', 'products', 'orders', 'comments');
     }
 };
 exports.AppModule = AppModule;
@@ -45,10 +51,23 @@ exports.AppModule = AppModule = __decorate([
                 isGlobal: true
             }),
             schedule_1.ScheduleModule.forRoot(),
-            user_module_1.UserModule, auth_module_1.AuthModule, products_module_1.ProductsModule, orders_module_1.OrdersModule
+            auth_module_1.AuthModule, user_module_1.UserModule, addresses_module_1.AddressesModule, products_module_1.ProductsModule, orders_module_1.OrdersModule, comments_module_1.CommentsModule,
         ],
         controllers: [],
-        providers: [],
+        providers: [
+            {
+                provide: core_1.APP_FILTER,
+                useClass: typeORMQueryException_filter_1.TypeORMQueryExceptionFilter
+            },
+            {
+                provide: core_1.APP_FILTER,
+                useClass: exceptionHandler_filter_1.ExceptionHandler
+            },
+            {
+                provide: core_1.APP_GUARD,
+                useClass: role_guard_1.AuthenticationGuard
+            }
+        ]
     })
 ], AppModule);
 //# sourceMappingURL=app.module.js.map

@@ -20,13 +20,16 @@ export class ProductsService {
     product.description=createProductDto.description;
     product.imgurl=createProductDto.imgurl;
     product.price=createProductDto.price;
+    product.comments=[];
 
     return this.productRepo.save(product);
   }
 
   findAll():Promise<Product[]> {
     console.log("First")
-    return this.productRepo.find();
+    return this.productRepo.find({relations:{
+      comments:true
+    }});
   }
 
   findOne(id: number):Promise<Product[]> {

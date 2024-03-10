@@ -19,6 +19,7 @@ const create_product_dto_1 = require("./dto/create-product.dto");
 const update_product_dto_1 = require("./dto/update-product.dto");
 const swagger_1 = require("@nestjs/swagger");
 const cache_manager_1 = require("@nestjs/cache-manager");
+const roles_decorators_1 = require("../../decorators/roles.decorators");
 let ProductsController = class ProductsController {
     constructor(productsService) {
         this.productsService = productsService;
@@ -42,6 +43,7 @@ let ProductsController = class ProductsController {
 };
 exports.ProductsController = ProductsController;
 __decorate([
+    (0, roles_decorators_1.Roles)(['admin']),
     (0, common_1.Post)("/add"),
     (0, swagger_1.ApiOperation)({ summary: 'Api to Add Products.' }),
     __param(0, (0, common_1.Body)()),
@@ -82,9 +84,9 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], ProductsController.prototype, "remove", null);
 exports.ProductsController = ProductsController = __decorate([
-    (0, common_1.Controller)('products'),
-    (0, swagger_1.ApiTags)("Products Apis."),
+    (0, swagger_1.ApiTags)("Products Controllers."),
     (0, swagger_1.ApiSecurity)("JWT-auth"),
+    (0, common_1.Controller)('/products'),
     (0, common_1.UseInterceptors)(cache_manager_1.CacheInterceptor),
     __metadata("design:paramtypes", [products_service_1.ProductsService])
 ], ProductsController);

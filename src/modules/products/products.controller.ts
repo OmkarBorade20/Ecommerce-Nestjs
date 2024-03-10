@@ -1,22 +1,30 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, ParseIntPipe, UseInterceptors } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, ParseIntPipe, UseInterceptors, UsePipes, UseGuards } from '@nestjs/common';
 import { ProductsService } from './products.service';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { Product } from './entities/product.entity';
 import { ApiOperation, ApiSecurity, ApiTags } from '@nestjs/swagger';
 import { CacheInterceptor } from '@nestjs/cache-manager';
+import { Freeze } from 'src/pipes/freeze.pipe';
+import { Roles } from 'src/decorators/roles.decorators';
 
-@Controller('products')
-@ApiTags("Products Apis.")
+
+@ApiTags("Products Controllers.")
 @ApiSecurity("JWT-auth")
+@Controller('/products')
 @UseInterceptors(CacheInterceptor)
 export class ProductsController {
   count=0;
   constructor(private readonly productsService: ProductsService) {}
 
+  @Roles(['admin'])
   @Post("/add")
   @ApiOperation({ summary: 'Api to Add Products.' })
-  create(@Body() createProductDto: CreateProductDto) {
+  // @UseGuards( Freeze)  //this will freeze all body params or queries present.
+  // create(@Body(new Freeze()) createProductDto: any) {
+
+    create(@Body() createProductDto: CreateProductDto) {
+    //createProductDto.data="abc";
     return this.productsService.create(createProductDto);
   }
 

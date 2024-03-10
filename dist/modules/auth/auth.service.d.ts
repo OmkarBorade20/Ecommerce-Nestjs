@@ -1,6 +1,6 @@
-import { LoginUser } from "./dto/loginbody";
-import { User } from "../users/entities/user.entity";
-import { Repository } from "typeorm";
+import { LoginUser } from './dto/loginbody';
+import { User } from '../users/entities/user.entity';
+import { Repository } from 'typeorm';
 export declare class AuthService {
     private readonly userRepo;
     constructor(userRepo: Repository<User>);

@@ -18,14 +18,6 @@ exports.UpdateOrderDto = UpdateOrderDto;
 __decorate([
     (0, swagger_1.ApiProperty)({ default: "2" }),
     __metadata("design:type", Number)
-], UpdateOrderDto.prototype, "userID", void 0);
-__decorate([
-    (0, swagger_1.ApiProperty)({ default: "2" }),
-    __metadata("design:type", Number)
-], UpdateOrderDto.prototype, "productId", void 0);
-__decorate([
-    (0, swagger_1.ApiProperty)({ default: "2" }),
-    __metadata("design:type", Number)
 ], UpdateOrderDto.prototype, "qty", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({ default: "2" }),

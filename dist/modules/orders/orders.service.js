@@ -18,26 +18,30 @@ const typeorm_1 = require("@nestjs/typeorm");
 const order_entity_1 = require("./entities/order.entity");
 const typeorm_2 = require("typeorm");
 const product_entity_1 = require("../products/entities/product.entity");
-const rxjs_1 = require("rxjs");
+const core_1 = require("@nestjs/core");
 let OrdersService = class OrdersService {
-    constructor(oderRepository, productRepository) {
+    constructor(req, oderRepository, productRepository) {
+        this.req = req;
         this.oderRepository = oderRepository;
         this.productRepository = productRepository;
     }
     async create(createOrderDto) {
         let product = await this.productRepository.findBy({ "id": createOrderDto.productId });
         if (product.length == 0)
-            throw new rxjs_1.NotFoundError(`Product Not Found For ID:${createOrderDto.productId}`);
+            throw new common_1.NotFoundException(`Product Not Found For ID:${createOrderDto.productId}`);
         let order = new order_entity_1.Order();
-        order.userID = createOrderDto.userID;
-        order.productId = createOrderDto.productId;
+        order.user = this.req['user'];
+        order.product = product[0];
         order.qty = createOrderDto.qty;
         order.price = product[0].price;
         order.total = createOrderDto.qty * product[0].price;
         return this.oderRepository.save(order);
     }
     findAll() {
-        return this.oderRepository.find();
+        return this.oderRepository.find({ relations: {
+                product: true,
+                user: true
+            } });
     }
     findOne(id) {
         return this.oderRepository.findBy({ "orderID": id });
@@ -45,8 +49,6 @@ let OrdersService = class OrdersService {
     async update(id, updateOrderDto) {
         let order = new order_entity_1.Order();
         order.orderID = id;
-        order.userID = updateOrderDto.userID;
-        order.productId = updateOrderDto.productId;
         order.qty = updateOrderDto.qty;
         order.price = updateOrderDto.price;
         order.total = updateOrderDto.qty * updateOrderDto.price;
@@ -59,8 +61,9 @@ let OrdersService = class OrdersService {
 exports.OrdersService = OrdersService;
 exports.OrdersService = OrdersService = __decorate([
     (0, common_1.Injectable)(),
-    __param(0, (0, typeorm_1.InjectRepository)(order_entity_1.Order)),
-    __param(1, (0, typeorm_1.InjectRepository)(product_entity_1.Product)),
-    __metadata("design:paramtypes", [typeorm_2.Repository, typeorm_2.Repository])
+    __param(0, (0, common_1.Inject)(core_1.REQUEST)),
+    __param(1, (0, typeorm_1.InjectRepository)(order_entity_1.Order)),
+    __param(2, (0, typeorm_1.InjectRepository)(product_entity_1.Product)),
+    __metadata("design:paramtypes", [Object, typeorm_2.Repository, typeorm_2.Repository])
 ], OrdersService);
 //# sourceMappingURL=orders.service.js.map

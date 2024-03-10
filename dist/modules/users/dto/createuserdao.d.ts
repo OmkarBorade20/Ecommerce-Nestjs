@@ -1,4 +1,5 @@
-export declare class CreateUserDao {
+import { Address } from "src/modules/addresses/entities/address.entity";
+export declare class CreateUserDao extends Address {
     name: string;
     age: number;
     gender: string;
@@ -7,4 +8,8 @@ export declare class CreateUserDao {
     email: string;
     password: string;
     role: string;
+    address: string;
+    state: string;
+    country: string;
+    pincode: number;
 }

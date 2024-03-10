@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Comment } from "src/modules/comments/entities/comment.entity";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class Product {
@@ -17,4 +18,7 @@ export class Product {
 
     @Column()
     imgurl:string;
+
+    @OneToMany(()=>Comment,(comment)=>comment.product,{eager: true,cascade:true})
+    comments:Comment[]
 }

@@ -2,6 +2,8 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import helmet from 'helmet';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
+import { logging } from './interceptors/logging.intercepotr';
+import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
 
@@ -10,7 +12,8 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.enableCors();
   app.use(helmet());
-
+  app.useGlobalInterceptors(new logging())
+  app.useGlobalPipes(new ValidationPipe())
   const config = new DocumentBuilder()
     .setTitle('Ecommerce Backend APIS')
     .setDescription('Ecommerce App API Descriptions.')

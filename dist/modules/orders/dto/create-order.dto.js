@@ -15,10 +15,6 @@ class CreateOrderDto {
 }
 exports.CreateOrderDto = CreateOrderDto;
 __decorate([
-    (0, swagger_1.ApiProperty)({ default: "2" }),
-    __metadata("design:type", Number)
-], CreateOrderDto.prototype, "userID", void 0);
-__decorate([
     (0, swagger_1.ApiProperty)({ default: "1" }),
     __metadata("design:type", Number)
 ], CreateOrderDto.prototype, "productId", void 0);

@@ -12,6 +12,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.User = void 0;
 const typeorm_1 = require("typeorm");
 const class_transformer_1 = require("class-transformer");
+const comment_entity_1 = require("../../comments/entities/comment.entity");
+const address_entity_1 = require("../../addresses/entities/address.entity");
 let User = class User {
 };
 exports.User = User;
@@ -40,7 +42,7 @@ __decorate([
     __metadata("design:type", String)
 ], User.prototype, "phone", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
+    (0, typeorm_1.Column)({ unique: true }),
     __metadata("design:type", String)
 ], User.prototype, "email", void 0);
 __decorate([
@@ -52,6 +54,14 @@ __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
 ], User.prototype, "role", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => comment_entity_1.Comment, (comment) => comment.user, { cascade: true }),
+    __metadata("design:type", Array)
+], User.prototype, "comments", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => address_entity_1.Address, (addresses) => addresses.user, { cascade: true, eager: true }),
+    __metadata("design:type", Array)
+], User.prototype, "addresses", void 0);
 exports.User = User = __decorate([
     (0, typeorm_1.Entity)()
 ], User);

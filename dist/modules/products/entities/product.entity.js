@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Product = void 0;
+const comment_entity_1 = require("../../comments/entities/comment.entity");
 const typeorm_1 = require("typeorm");
 let Product = class Product {
 };
@@ -34,6 +35,10 @@ __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
 ], Product.prototype, "imgurl", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => comment_entity_1.Comment, (comment) => comment.product, { eager: true, cascade: true }),
+    __metadata("design:type", Array)
+], Product.prototype, "comments", void 0);
 exports.Product = Product = __decorate([
     (0, typeorm_1.Entity)()
 ], Product);

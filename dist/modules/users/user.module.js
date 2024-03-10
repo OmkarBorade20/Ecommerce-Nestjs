@@ -12,7 +12,11 @@ const user_controller_1 = require("./user.controller");
 const user_service_1 = require("./user.service");
 const typeorm_1 = require("@nestjs/typeorm");
 const user_entity_1 = require("./entities/user.entity");
+const tokenvalidation_middleware_1 = require("../../middlewares/tokenvalidation.middleware");
 let UserModule = class UserModule {
+    configure(consumer) {
+        consumer.apply(tokenvalidation_middleware_1.TokenValidation).forRoutes("/users/fetch");
+    }
 };
 exports.UserModule = UserModule;
 exports.UserModule = UserModule = __decorate([

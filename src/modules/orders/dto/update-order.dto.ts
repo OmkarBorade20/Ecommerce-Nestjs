@@ -3,11 +3,11 @@ import { CreateOrderDto } from './create-order.dto';
 
 export class UpdateOrderDto extends PartialType(CreateOrderDto) {
 
-    @ApiProperty({default: "2"})
-    userID: number;
+    // @ApiProperty({default: "2"})
+    // userID: number;
 
-    @ApiProperty({default: "2"})
-    productId: number;
+    // @ApiProperty({default: "2"})
+    // productId: number;
 
     @ApiProperty({default: "2"})
     qty: number;

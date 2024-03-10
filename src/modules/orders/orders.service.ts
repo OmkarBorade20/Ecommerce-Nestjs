@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -6,10 +6,12 @@ import { Order } from './entities/order.entity';
 import { Repository } from 'typeorm';
 import { Product } from '../products/entities/product.entity';
 import { NotFoundError } from 'rxjs';
+import { REQUEST } from '@nestjs/core';
+import {Request} from 'express'
 
 @Injectable()
 export class OrdersService {
-  constructor(@InjectRepository(Order) private oderRepository :Repository<Order>,@InjectRepository(Product) private productRepository :Repository<Product>){}
+  constructor(@Inject(REQUEST) private readonly req:Request, @InjectRepository(Order) private oderRepository :Repository<Order>,@InjectRepository(Product) private productRepository :Repository<Product>){}
 
   async create(createOrderDto: CreateOrderDto) {
 
@@ -17,11 +19,11 @@ export class OrdersService {
     let product=await this.productRepository.findBy({"id":createOrderDto.productId})
 
     if(product.length==0)
-      throw new NotFoundError(`Product Not Found For ID:${createOrderDto.productId}`)
+      throw new NotFoundException(`Product Not Found For ID:${createOrderDto.productId}`)
 
     let order:Order=new Order();
-    order.userID=createOrderDto.userID;
-    order.productId=createOrderDto.productId;  
+    order.user=this.req['user'];
+    order.product=product[0];  
     order.qty=createOrderDto.qty;
     order.price=product[0].price;
     order.total=createOrderDto.qty*product[0].price;
@@ -30,7 +32,10 @@ export class OrdersService {
   }
 
   findAll() {
-    return this.oderRepository.find();
+    return this.oderRepository.find({relations:{
+      product:true,
+      user:true
+    }});
   }
 
   findOne(id: number) {
@@ -41,8 +46,8 @@ export class OrdersService {
 
     let order:Order=new Order();
     order.orderID=id;
-    order.userID=updateOrderDto.userID;
-    order.productId=updateOrderDto.productId;  
+    // order.userID=updateOrderDto.userID;
+    // order.productId=updateOrderDto.productId;  
     order.qty=updateOrderDto.qty;
     order.price=updateOrderDto.price;
     order.total=updateOrderDto.qty*updateOrderDto.price;
