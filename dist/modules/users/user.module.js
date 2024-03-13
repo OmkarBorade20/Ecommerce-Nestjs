@@ -15,7 +15,7 @@ const user_entity_1 = require("./entities/user.entity");
 const tokenvalidation_middleware_1 = require("../../middlewares/tokenvalidation.middleware");
 let UserModule = class UserModule {
     configure(consumer) {
-        consumer.apply(tokenvalidation_middleware_1.TokenValidation).forRoutes("/users/fetch");
+        consumer.apply(tokenvalidation_middleware_1.TokenValidation).forRoutes('/users/fetch');
     }
 };
 exports.UserModule = UserModule;

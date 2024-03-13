@@ -41,8 +41,8 @@ let OrdersController = class OrdersController {
 };
 exports.OrdersController = OrdersController;
 __decorate([
-    (0, roles_decorators_1.Roles)(['User']),
-    (0, common_1.Post)("create"),
+    (0, roles_decorators_1.Roles)(['Admin', 'User']),
+    (0, common_1.Post)('create'),
     (0, swagger_1.ApiOperation)({ summary: 'Creates Orders.' }),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -50,6 +50,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], OrdersController.prototype, "create", null);
 __decorate([
+    (0, roles_decorators_1.Roles)(['Admin']),
     (0, common_1.Get)(),
     (0, swagger_1.ApiOperation)({ summary: 'Fetches all the Orders.' }),
     __metadata("design:type", Function),
@@ -65,6 +66,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], OrdersController.prototype, "findOne", null);
 __decorate([
+    (0, roles_decorators_1.Roles)(['Admin', 'User']),
     (0, common_1.Patch)('/update/:id'),
     (0, swagger_1.ApiOperation)({ summary: 'Updates Order based on Id.' }),
     __param(0, (0, common_1.Param)('id')),
@@ -74,6 +76,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], OrdersController.prototype, "update", null);
 __decorate([
+    (0, roles_decorators_1.Roles)(['Admin']),
     (0, common_1.Delete)('/remove/:id'),
     (0, swagger_1.ApiOperation)({ summary: 'Removes Orders based on OrderId passed.' }),
     __param(0, (0, common_1.Param)('id')),
@@ -82,8 +85,8 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], OrdersController.prototype, "remove", null);
 exports.OrdersController = OrdersController = __decorate([
-    (0, swagger_1.ApiTags)("Orders Controller."),
-    (0, swagger_1.ApiSecurity)("JWT-auth"),
+    (0, swagger_1.ApiTags)('Orders Controller.'),
+    (0, swagger_1.ApiSecurity)('JWT-auth'),
     (0, common_1.Controller)('orders'),
     __metadata("design:paramtypes", [orders_service_1.OrdersService])
 ], OrdersController);

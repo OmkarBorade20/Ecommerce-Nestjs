@@ -41,18 +41,20 @@ let AddressesController = class AddressesController {
 exports.AddressesController = AddressesController;
 __decorate([
     (0, swagger_1.ApiOperation)({ summary: 'Api to Add Address to User.' }),
-    (0, common_1.Post)("/add"),
+    (0, common_1.Post)('/add'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [create_address_dto_1.CreateAddressDto]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], AddressesController.prototype, "create", null);
 __decorate([
-    (0, swagger_1.ApiOperation)({ summary: 'Api to Fetch all Address {Admin Access Required}.' }),
+    (0, swagger_1.ApiOperation)({
+        summary: 'Api to Fetch all Address {Admin Access Required}.',
+    }),
     (0, common_1.Get)(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], AddressesController.prototype, "findAll", null);
 __decorate([
     (0, swagger_1.ApiOperation)({ summary: 'Api to find Address based on Id.' }),
@@ -60,7 +62,7 @@ __decorate([
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], AddressesController.prototype, "findOne", null);
 __decorate([
     (0, swagger_1.ApiOperation)({ summary: 'Api to update Address based on Id.' }),
@@ -69,7 +71,7 @@ __decorate([
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String, update_address_dto_1.UpdateAddressDto]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", String)
 ], AddressesController.prototype, "update", null);
 __decorate([
     (0, swagger_1.ApiOperation)({ summary: 'Api to Remove Address based on User logged in.' }),
@@ -77,11 +79,11 @@ __decorate([
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], AddressesController.prototype, "remove", null);
 exports.AddressesController = AddressesController = __decorate([
-    (0, swagger_1.ApiTags)("Address Controller."),
-    (0, swagger_1.ApiSecurity)("JWT-auth"),
+    (0, swagger_1.ApiTags)('Address Controller.'),
+    (0, swagger_1.ApiSecurity)('JWT-auth'),
     (0, common_1.Controller)('addresses'),
     __metadata("design:paramtypes", [addresses_service_1.AddressesService])
 ], AddressesController);

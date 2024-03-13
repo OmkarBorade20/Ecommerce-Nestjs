@@ -11,7 +11,7 @@ const typeorm_1 = require("typeorm");
 const product_entity_1 = require("../entities/product.entity");
 let ProductRepository = class ProductRepository extends typeorm_1.Repository {
     getProductbyTitle(title) {
-        return this.findOne({ where: { 'title': title } });
+        return this.findOne({ where: { title: title } });
     }
 };
 exports.ProductRepository = ProductRepository;

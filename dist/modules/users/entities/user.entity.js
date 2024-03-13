@@ -59,7 +59,10 @@ __decorate([
     __metadata("design:type", Array)
 ], User.prototype, "comments", void 0);
 __decorate([
-    (0, typeorm_1.OneToMany)(() => address_entity_1.Address, (addresses) => addresses.user, { cascade: true, eager: true }),
+    (0, typeorm_1.OneToMany)(() => address_entity_1.Address, (addresses) => addresses.user, {
+        cascade: true,
+        eager: true,
+    }),
     __metadata("design:type", Array)
 ], User.prototype, "addresses", void 0);
 exports.User = User = __decorate([

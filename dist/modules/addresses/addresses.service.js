@@ -26,9 +26,11 @@ let AddressesService = class AddressesService {
         this.userRepository = userRepository;
     }
     async create(createAddressDto) {
-        const user = await this.userRepository.findBy({ "email": this.req["user"].email });
+        const user = await this.userRepository.findBy({
+            email: this.req['user'].email,
+        });
         if (user.length == 0)
-            throw new common_1.NotFoundException("User is not Present in System.");
+            throw new common_1.NotFoundException('User is not Present in System.');
         let address = new address_entity_1.Address();
         address.address = createAddressDto.address;
         address.city = createAddressDto.city;
@@ -45,23 +47,24 @@ let AddressesService = class AddressesService {
     findOne(id) {
         return this.addressRepository.find({
             where: {
-                "id": id
-            }
+                id: id,
+            },
         });
     }
     update(id, updateAddressDto) {
         return `This action updates a #${id} address`;
     }
     async remove(id) {
-        let address = await this.addressRepository.findBy({ "id": id });
+        let address = await this.addressRepository.findBy({ id: id });
         let user = await this.userRepository.find({
             where: {
-                "email": this.req["user"].email
-            }, relations: {
-                addresses: true
-            }
+                email: this.req['user'].email,
+            },
+            relations: {
+                addresses: true,
+            },
         });
-        if (user[0].addresses.filter(e => e.id == id).length == 0)
+        if (user[0].addresses.filter((e) => e.id == id).length == 0)
             throw new common_1.UnauthorizedException(`The Address Id ${id} is Not Avaialable for Edit.!`);
         address[0].isActive = 0;
         return this.addressRepository.save(address[0]);
@@ -73,6 +76,7 @@ exports.AddressesService = AddressesService = __decorate([
     __param(0, (0, common_1.Inject)(core_1.REQUEST)),
     __param(1, (0, typeorm_1.InjectRepository)(address_entity_1.Address)),
     __param(2, (0, typeorm_1.InjectRepository)(user_entity_1.User)),
-    __metadata("design:paramtypes", [Object, typeorm_2.Repository, typeorm_2.Repository])
+    __metadata("design:paramtypes", [Object, typeorm_2.Repository,
+        typeorm_2.Repository])
 ], AddressesService);
 //# sourceMappingURL=addresses.service.js.map

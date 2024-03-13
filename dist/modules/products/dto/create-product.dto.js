@@ -15,7 +15,7 @@ class CreateProductDto {
 }
 exports.CreateProductDto = CreateProductDto;
 __decorate([
-    (0, swagger_1.ApiProperty)({ default: "Spiderman 2 PS 5" }),
+    (0, swagger_1.ApiProperty)({ default: 'Spiderman 2 PS 5' }),
     __metadata("design:type", String)
 ], CreateProductDto.prototype, "title", void 0);
 __decorate([
@@ -23,11 +23,13 @@ __decorate([
     __metadata("design:type", Number)
 ], CreateProductDto.prototype, "price", void 0);
 __decorate([
-    (0, swagger_1.ApiProperty)({ default: "Sony Ps5 Spiderman 2 Standard Edn." }),
+    (0, swagger_1.ApiProperty)({ default: 'Sony Ps5 Spiderman 2 Standard Edn.' }),
     __metadata("design:type", String)
 ], CreateProductDto.prototype, "description", void 0);
 __decorate([
-    (0, swagger_1.ApiProperty)({ default: "https://m.media-amazon.com/images/I/81qBiCSoegL._SX679_.jpg" }),
+    (0, swagger_1.ApiProperty)({
+        default: 'https://m.media-amazon.com/images/I/81qBiCSoegL._SX679_.jpg',
+    }),
     __metadata("design:type", String)
 ], CreateProductDto.prototype, "imgurl", void 0);
 //# sourceMappingURL=create-product.dto.js.map

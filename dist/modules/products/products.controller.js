@@ -44,7 +44,7 @@ let ProductsController = class ProductsController {
 exports.ProductsController = ProductsController;
 __decorate([
     (0, roles_decorators_1.Roles)(['Admin']),
-    (0, common_1.Post)("/add"),
+    (0, common_1.Post)('/add'),
     (0, swagger_1.ApiOperation)({ summary: 'Api to Add Products.' }),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -52,7 +52,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], ProductsController.prototype, "create", null);
 __decorate([
-    (0, common_1.Get)(""),
+    (0, common_1.Get)(''),
     (0, swagger_1.ApiOperation)({ summary: 'Api to Fetch Products.' }),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
@@ -67,6 +67,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], ProductsController.prototype, "findOne", null);
 __decorate([
+    (0, roles_decorators_1.Roles)(['Admin']),
     (0, common_1.Patch)('/update/:id'),
     (0, swagger_1.ApiOperation)({ summary: 'Api to Update Products Based on ProductID.' }),
     __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
@@ -76,6 +77,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], ProductsController.prototype, "update", null);
 __decorate([
+    (0, roles_decorators_1.Roles)(['Admin']),
     (0, common_1.Delete)('/remove/:id'),
     (0, swagger_1.ApiOperation)({ summary: 'Api to Remove Products based on ProductID.' }),
     __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
@@ -84,8 +86,8 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], ProductsController.prototype, "remove", null);
 exports.ProductsController = ProductsController = __decorate([
-    (0, swagger_1.ApiTags)("Products Controllers."),
-    (0, swagger_1.ApiSecurity)("JWT-auth"),
+    (0, swagger_1.ApiTags)('Products Controllers.'),
+    (0, swagger_1.ApiSecurity)('JWT-auth'),
     (0, common_1.Controller)('/products'),
     (0, common_1.UseInterceptors)(cache_manager_1.CacheInterceptor),
     __metadata("design:paramtypes", [products_service_1.ProductsService])

@@ -3,9 +3,8 @@ import { UpdateProductDto } from './dto/update-product.dto';
 import { Product } from './entities/product.entity';
 import { Repository } from 'typeorm';
 export declare class ProductsService {
-    private cacheManager;
     private readonly productRepo;
-    constructor(cacheManager: any, productRepo: Repository<Product>);
+    constructor(productRepo: Repository<Product>);
     create(createProductDto: CreateProductDto): Promise<Product>;
     findAll(): Promise<Product[]>;
     findOne(id: number): Promise<Product[]>;

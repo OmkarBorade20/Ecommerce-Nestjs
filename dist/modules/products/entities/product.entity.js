@@ -36,7 +36,10 @@ __decorate([
     __metadata("design:type", String)
 ], Product.prototype, "imgurl", void 0);
 __decorate([
-    (0, typeorm_1.OneToMany)(() => comment_entity_1.Comment, (comment) => comment.product, { eager: true, cascade: true }),
+    (0, typeorm_1.OneToMany)(() => comment_entity_1.Comment, (comment) => comment.product, {
+        eager: true,
+        cascade: true,
+    }),
     __metadata("design:type", Array)
 ], Product.prototype, "comments", void 0);
 exports.Product = Product = __decorate([

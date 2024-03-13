@@ -15,11 +15,11 @@ class CreateOrderDto {
 }
 exports.CreateOrderDto = CreateOrderDto;
 __decorate([
-    (0, swagger_1.ApiProperty)({ default: "1" }),
+    (0, swagger_1.ApiProperty)({ default: '1' }),
     __metadata("design:type", Number)
 ], CreateOrderDto.prototype, "productId", void 0);
 __decorate([
-    (0, swagger_1.ApiProperty)({ default: "1" }),
+    (0, swagger_1.ApiProperty)({ default: '1' }),
     __metadata("design:type", Number)
 ], CreateOrderDto.prototype, "qty", void 0);
 //# sourceMappingURL=create-order.dto.js.map

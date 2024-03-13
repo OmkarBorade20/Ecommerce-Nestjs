@@ -28,30 +28,32 @@ let CommentsService = class CommentsService {
         this.userRepository = userRepository;
     }
     async create(createCommentDto) {
-        const product = await this.productRepository.findBy({ "id": createCommentDto.productid });
+        const product = await this.productRepository.findBy({
+            id: createCommentDto.productid,
+        });
         if (product.length == 0)
             throw new common_1.NotFoundException(`ProductID :${createCommentDto.productid} is Not Found in System!.`);
         const comment = new comment_entity_1.Comment();
         comment.comment = createCommentDto.comment;
         comment.product = product[0];
-        comment.username = this.req["user"].name;
-        comment.user = this.req["user"];
+        comment.username = this.req['user'].name;
+        comment.user = this.req['user'];
         return this.commentRepository.save(comment);
     }
     findAll() {
         return this.commentRepository.find();
     }
     findComments(req) {
-        let username = req["user"].name;
+        let username = req['user'].name;
         return this.commentRepository.find({
             relations: ['product'],
             where: {
-                'username': username,
+                username: username,
             },
         });
     }
     findOne(id) {
-        return this.commentRepository.findBy({ "id": id });
+        return this.commentRepository.findBy({ id: id });
     }
     update(id, updateCommentDto) {
         return `This action updates a #${id} comment`;
@@ -67,6 +69,8 @@ exports.CommentsService = CommentsService = __decorate([
     __param(1, (0, typeorm_2.InjectRepository)(comment_entity_1.Comment)),
     __param(2, (0, typeorm_2.InjectRepository)(product_entity_1.Product)),
     __param(3, (0, typeorm_2.InjectRepository)(user_entity_1.User)),
-    __metadata("design:paramtypes", [Object, typeorm_1.Repository, typeorm_1.Repository, typeorm_1.Repository])
+    __metadata("design:paramtypes", [Object, typeorm_1.Repository,
+        typeorm_1.Repository,
+        typeorm_1.Repository])
 ], CommentsService);
 //# sourceMappingURL=comments.service.js.map

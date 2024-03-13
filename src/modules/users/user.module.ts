@@ -6,13 +6,13 @@ import { User } from './entities/user.entity';
 import { TokenValidation } from 'src/middlewares/tokenvalidation.middleware';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([User]) ],
+  imports: [TypeOrmModule.forFeature([User])],
   controllers: [UserController],
   providers: [UserService],
   exports: [],
 })
 export class UserModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply(TokenValidation).forRoutes("/users/fetch")
+    consumer.apply(TokenValidation).forRoutes('/users/fetch');
   }
 }

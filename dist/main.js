@@ -17,13 +17,14 @@ async function bootstrap() {
         .setDescription('Ecommerce App API Descriptions.')
         .setVersion('1.0')
         .addBearerAuth({
-        "type": "http",
-        "scheme": "bearer",
-        "bearerFormat": "JWT",
-        "name": "JWT",
-        "description": "Enter JWT Token.",
-        "in": "headers"
-    }, "JWT-auth").build();
+        type: 'http',
+        scheme: 'bearer',
+        bearerFormat: 'JWT',
+        name: 'JWT',
+        description: 'Enter JWT Token.',
+        in: 'headers',
+    }, 'JWT-auth')
+        .build();
     const document = swagger_1.SwaggerModule.createDocument(app, config);
     swagger_1.SwaggerModule.setup('/api-docs', app, document);
     await app.listen(process.env.PORT);

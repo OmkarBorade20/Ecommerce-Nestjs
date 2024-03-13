@@ -1,36 +1,37 @@
-import { Product } from "src/modules/products/entities/product.entity";
-import { User } from "src/modules/users/entities/user.entity";
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Product } from 'src/modules/products/entities/product.entity';
+import { User } from 'src/modules/users/entities/user.entity';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class Order {
+  @PrimaryGeneratedColumn()
+  orderID: number;
 
-    @PrimaryGeneratedColumn()
-    orderID:number;
+  // @Column()
+  // userID:number;
 
-    // @Column()
-    // userID:number;
+  // @Column()
+  // productId:number;
 
-    // @Column()
-    // productId:number;
+  @Column()
+  qty: number;
 
-    @Column()
-    qty:number;
+  @Column()
+  price: number;
 
-    @Column()
-    price:number;
+  @Column()
+  total: number;
 
-    @Column()
-    total:number;
+  //unidirectional mapping.
+  @ManyToOne(() => Product)
+  product: Product;
 
+  @ManyToOne(() => User)
+  user: User;
 
-    //unidirectional mapping.
-    @ManyToOne(()=>Product)
-    product:Product;
+  @Column()
+  userId: number;
 
-    @ManyToOne(()=>User)
-    user:User
-
-    
-
+  @Column()
+  productId: number;
 }

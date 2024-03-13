@@ -19,10 +19,10 @@ let InternalServerErrorExceptionFilter = class InternalServerErrorExceptionFilte
             return;
         }
         res.status(500).send({
-            "statusCode": res.statusCode,
-            "errMsg": errMsg,
-            "errName": errName,
-            "errStack": errStack,
+            statusCode: res.statusCode,
+            errMsg: errMsg,
+            errName: errName,
+            errStack: errStack,
         });
     }
 };

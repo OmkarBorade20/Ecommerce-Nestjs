@@ -17,6 +17,7 @@ const common_1 = require("@nestjs/common");
 const user_service_1 = require("./user.service");
 const createuserdao_1 = require("./dto/createuserdao");
 const swagger_1 = require("@nestjs/swagger");
+const roles_decorators_1 = require("../../decorators/roles.decorators");
 let UserController = class UserController {
     constructor(userService) {
         this.userService = userService;
@@ -33,7 +34,7 @@ let UserController = class UserController {
 };
 exports.UserController = UserController;
 __decorate([
-    (0, common_1.Post)("/register"),
+    (0, common_1.Post)('/register'),
     (0, swagger_1.ApiOperation)({ summary: 'Api to Register a user into the system.' }),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -41,7 +42,8 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], UserController.prototype, "register", null);
 __decorate([
-    (0, common_1.Get)("/fetch"),
+    (0, common_1.Get)('/fetch'),
+    (0, roles_decorators_1.Roles)(['Admin']),
     (0, swagger_1.ApiOperation)({ summary: 'Api to Fetch the Registered users.' }),
     (0, common_1.UseInterceptors)(common_1.ClassSerializerInterceptor),
     __metadata("design:type", Function),
@@ -49,17 +51,18 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], UserController.prototype, "getAll", null);
 __decorate([
-    (0, common_1.Get)("/remove/:id"),
+    (0, roles_decorators_1.Roles)(['Admin']),
+    (0, common_1.Get)('/remove/:id'),
     (0, swagger_1.ApiOperation)({ summary: 'Api to Remove Registered users.' }),
-    __param(0, (0, common_1.Param)("id", common_1.ParseIntPipe)),
+    __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", void 0)
 ], UserController.prototype, "remove", null);
 exports.UserController = UserController = __decorate([
-    (0, common_1.Controller)("/users"),
-    (0, swagger_1.ApiTags)("Users Controllers."),
-    (0, swagger_1.ApiSecurity)("JWT-auth"),
+    (0, common_1.Controller)('/users'),
+    (0, swagger_1.ApiTags)('Users Controllers.'),
+    (0, swagger_1.ApiSecurity)('JWT-auth'),
     __metadata("design:paramtypes", [user_service_1.UserService])
 ], UserController);
 //# sourceMappingURL=user.controller.js.map

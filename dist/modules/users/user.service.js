@@ -23,16 +23,16 @@ let UserService = class UserService {
         this.userRepo = userRepo;
     }
     async register(createuserDao) {
-        const dbuser = await this.userRepo.findBy({ "email": createuserDao.email });
+        const dbuser = await this.userRepo.findBy({ email: createuserDao.email });
         if (dbuser.length != 0)
             throw new common_1.ConflictException(`${dbuser[0].email}: is Already Registered.!`);
         const address = {
-            "address": createuserDao.address,
-            "pincode": createuserDao.pincode,
-            "city": createuserDao.city,
-            "country": createuserDao.country,
-            "state": createuserDao.state,
-            "isActive": 1,
+            address: createuserDao.address,
+            pincode: createuserDao.pincode,
+            city: createuserDao.city,
+            country: createuserDao.country,
+            state: createuserDao.state,
+            isActive: 1,
         };
         const addresses = [];
         addresses.push(address);

@@ -7,8 +7,8 @@ import { User } from '../users/entities/user.entity';
 import { Comment } from './entities/comment.entity';
 
 @Module({
-  imports:[TypeOrmModule.forFeature([Product,User,Comment])],
+  imports: [TypeOrmModule.forFeature([Product, User, Comment])],
   controllers: [CommentsController],
-  providers: [CommentsService,],
+  providers: [CommentsService],
 })
 export class CommentsModule {}

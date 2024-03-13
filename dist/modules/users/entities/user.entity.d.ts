@@ -1,5 +1,5 @@
-import { Comment } from "src/modules/comments/entities/comment.entity";
-import { Address } from "src/modules/addresses/entities/address.entity";
+import { Comment } from 'src/modules/comments/entities/comment.entity';
+import { Address } from 'src/modules/addresses/entities/address.entity';
 export declare class User {
     id: number;
     name: string;

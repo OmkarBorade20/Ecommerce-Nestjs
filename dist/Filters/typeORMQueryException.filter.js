@@ -14,7 +14,12 @@ let TypeORMQueryExceptionFilter = class TypeORMQueryExceptionFilter {
         const ctx = host.switchToHttp();
         const response = ctx.getResponse();
         const request = ctx.getRequest();
-        response.status(500).send({ message: "Error", exception: exception.sqlMessage || exception.message });
+        response
+            .status(500)
+            .send({
+            message: 'Error',
+            exception: exception.sqlMessage || exception.message,
+        });
     }
 };
 exports.TypeORMQueryExceptionFilter = TypeORMQueryExceptionFilter;

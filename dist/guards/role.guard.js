@@ -25,8 +25,8 @@ let RoleAuthenticationGuard = class RoleAuthenticationGuard {
             return true;
         }
         const user = request.user;
-        console.log("user", user);
-        if (user.role == roles)
+        console.log('user', user);
+        if (roles.includes(user.role))
             return true;
         else
             return false;

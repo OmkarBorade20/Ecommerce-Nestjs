@@ -18,7 +18,7 @@ let logging = class logging {
         return next.handle().pipe((0, rxjs_1.tap)((res) => {
             const response = context.switchToHttp().getResponse();
             const { statusCode } = response;
-            const contentLength = response.get("content-length");
+            const contentLength = response.get('content-length');
             console.log(`${method} | ${statusCode}  |  ${url}  |  Controller: {${context.getClass().name}} | Method: {${context.getHandler().name}} | ${new Date().toISOString()} | ${Date.now() - now}ms `);
         }));
     }

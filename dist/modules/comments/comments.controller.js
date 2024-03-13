@@ -16,7 +16,6 @@ exports.CommentsController = void 0;
 const common_1 = require("@nestjs/common");
 const comments_service_1 = require("./comments.service");
 const create_comment_dto_1 = require("./dto/create-comment.dto");
-const update_comment_dto_1 = require("./dto/update-comment.dto");
 const swagger_1 = require("@nestjs/swagger");
 const roles_decorators_1 = require("../../decorators/roles.decorators");
 let CommentsController = class CommentsController {
@@ -35,17 +34,11 @@ let CommentsController = class CommentsController {
     findOne(id) {
         return this.commentsService.findOne(+id);
     }
-    update(id, updateCommentDto) {
-        return this.commentsService.update(+id, updateCommentDto);
-    }
-    remove(id) {
-        return this.commentsService.remove(+id);
-    }
 };
 exports.CommentsController = CommentsController;
 __decorate([
     (0, roles_decorators_1.Roles)(['User']),
-    (0, common_1.Post)("/add"),
+    (0, common_1.Post)('/add'),
     (0, swagger_1.ApiOperation)({ summary: 'Api to Add Comments to Products .' }),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -60,7 +53,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], CommentsController.prototype, "findAll", null);
 __decorate([
-    (0, common_1.Get)("/fetch"),
+    (0, common_1.Get)('/fetch'),
     (0, swagger_1.ApiOperation)({ summary: 'Api to Fetch all Comments based on login role.' }),
     __param(0, (0, common_1.Req)()),
     __metadata("design:type", Function),
@@ -75,26 +68,9 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], CommentsController.prototype, "findOne", null);
-__decorate([
-    (0, common_1.Patch)('/update/:id'),
-    (0, swagger_1.ApiOperation)({ summary: 'Api to Update Comments .' }),
-    __param(0, (0, common_1.Param)('id')),
-    __param(1, (0, common_1.Body)()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, update_comment_dto_1.UpdateCommentDto]),
-    __metadata("design:returntype", void 0)
-], CommentsController.prototype, "update", null);
-__decorate([
-    (0, common_1.Delete)('/remove/:id'),
-    (0, swagger_1.ApiOperation)({ summary: 'Api to Delete Comments .' }),
-    __param(0, (0, common_1.Param)('id')),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", void 0)
-], CommentsController.prototype, "remove", null);
 exports.CommentsController = CommentsController = __decorate([
-    (0, swagger_1.ApiTags)("Comments Controller."),
-    (0, swagger_1.ApiSecurity)("JWT-auth"),
+    (0, swagger_1.ApiTags)('Comments Controller.'),
+    (0, swagger_1.ApiSecurity)('JWT-auth'),
     (0, common_1.Controller)('comments'),
     __metadata("design:paramtypes", [comments_service_1.CommentsService])
 ], CommentsController);

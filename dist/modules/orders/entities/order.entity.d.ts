@@ -1,5 +1,5 @@
-import { Product } from "src/modules/products/entities/product.entity";
-import { User } from "src/modules/users/entities/user.entity";
+import { Product } from 'src/modules/products/entities/product.entity';
+import { User } from 'src/modules/users/entities/user.entity';
 export declare class Order {
     orderID: number;
     qty: number;
@@ -7,4 +7,6 @@ export declare class Order {
     total: number;
     product: Product;
     user: User;
+    userId: number;
+    productId: number;
 }

@@ -16,51 +16,53 @@ class CreateUserDao extends address_entity_1.Address {
 }
 exports.CreateUserDao = CreateUserDao;
 __decorate([
-    (0, swagger_1.ApiProperty)({ default: "Omkar Borade" }),
+    (0, swagger_1.ApiProperty)({ default: 'Omkar Borade' }),
     __metadata("design:type", String)
 ], CreateUserDao.prototype, "name", void 0);
 __decorate([
-    (0, swagger_1.ApiProperty)({ default: "25" }),
+    (0, swagger_1.ApiProperty)({ default: '25' }),
     __metadata("design:type", Number)
 ], CreateUserDao.prototype, "age", void 0);
 __decorate([
-    (0, swagger_1.ApiProperty)({ default: "Male" }),
+    (0, swagger_1.ApiProperty)({ default: 'Male' }),
     __metadata("design:type", String)
 ], CreateUserDao.prototype, "gender", void 0);
 __decorate([
-    (0, swagger_1.ApiProperty)({ default: "Pune" }),
+    (0, swagger_1.ApiProperty)({ default: 'Pune' }),
     __metadata("design:type", String)
 ], CreateUserDao.prototype, "city", void 0);
 __decorate([
-    (0, swagger_1.ApiProperty)({ default: "8446920098" }),
+    (0, swagger_1.ApiProperty)({ default: '8446920098' }),
     __metadata("design:type", String)
 ], CreateUserDao.prototype, "phone", void 0);
 __decorate([
-    (0, swagger_1.ApiProperty)({ default: "omkar.borade@gmail.com" }),
+    (0, swagger_1.ApiProperty)({ default: 'omkar.borade@gmail.com' }),
     __metadata("design:type", String)
 ], CreateUserDao.prototype, "email", void 0);
 __decorate([
-    (0, swagger_1.ApiProperty)({ default: "Omkar123" }),
+    (0, swagger_1.ApiProperty)({ default: 'Omkar123' }),
     __metadata("design:type", String)
 ], CreateUserDao.prototype, "password", void 0);
 __decorate([
-    (0, swagger_1.ApiProperty)({ default: "Admin" }),
+    (0, swagger_1.ApiProperty)({ default: 'Admin' }),
     __metadata("design:type", String)
 ], CreateUserDao.prototype, "role", void 0);
 __decorate([
-    (0, swagger_1.ApiProperty)({ default: "86/A Wanwadi SalunkheVihar Road Near Borade Nagar Pune 40" }),
+    (0, swagger_1.ApiProperty)({
+        default: '86/A Wanwadi SalunkheVihar Road Near Borade Nagar Pune 40',
+    }),
     __metadata("design:type", String)
 ], CreateUserDao.prototype, "address", void 0);
 __decorate([
-    (0, swagger_1.ApiProperty)({ default: "Maharashtra" }),
+    (0, swagger_1.ApiProperty)({ default: 'Maharashtra' }),
     __metadata("design:type", String)
 ], CreateUserDao.prototype, "state", void 0);
 __decorate([
-    (0, swagger_1.ApiProperty)({ default: "India" }),
+    (0, swagger_1.ApiProperty)({ default: 'India' }),
     __metadata("design:type", String)
 ], CreateUserDao.prototype, "country", void 0);
 __decorate([
-    (0, swagger_1.ApiProperty)({ default: "411040" }),
+    (0, swagger_1.ApiProperty)({ default: '411040' }),
     __metadata("design:type", Number)
 ], CreateUserDao.prototype, "pincode", void 0);
 //# sourceMappingURL=createuserdao.js.map

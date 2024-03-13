@@ -20,23 +20,25 @@ __decorate([
     __metadata("design:type", Number)
 ], UpdateAddressDto.prototype, "id", void 0);
 __decorate([
-    (0, swagger_1.ApiProperty)({ default: "86/A Wanwadi SalunkheVihar Road Near Borade Nagar Pune 40" }),
+    (0, swagger_1.ApiProperty)({
+        default: '86/A Wanwadi SalunkheVihar Road Near Borade Nagar Pune 40',
+    }),
     __metadata("design:type", String)
 ], UpdateAddressDto.prototype, "address", void 0);
 __decorate([
-    (0, swagger_1.ApiProperty)({ default: "Pune" }),
+    (0, swagger_1.ApiProperty)({ default: 'Pune' }),
     __metadata("design:type", String)
 ], UpdateAddressDto.prototype, "city", void 0);
 __decorate([
-    (0, swagger_1.ApiProperty)({ default: "Maharashtra" }),
+    (0, swagger_1.ApiProperty)({ default: 'Maharashtra' }),
     __metadata("design:type", String)
 ], UpdateAddressDto.prototype, "state", void 0);
 __decorate([
-    (0, swagger_1.ApiProperty)({ default: "India" }),
+    (0, swagger_1.ApiProperty)({ default: 'India' }),
     __metadata("design:type", String)
 ], UpdateAddressDto.prototype, "country", void 0);
 __decorate([
-    (0, swagger_1.ApiProperty)({ default: "411040" }),
+    (0, swagger_1.ApiProperty)({ default: '411040' }),
     __metadata("design:type", Number)
 ], UpdateAddressDto.prototype, "pincode", void 0);
 //# sourceMappingURL=update-address.dto.js.map

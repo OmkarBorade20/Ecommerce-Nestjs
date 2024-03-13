@@ -1,4 +1,4 @@
-import { Comment } from "src/modules/comments/entities/comment.entity";
+import { Comment } from 'src/modules/comments/entities/comment.entity';
 export declare class Product {
     id: number;
     title: string;

@@ -14,12 +14,10 @@ let ExceptionHandler = class ExceptionHandler {
         const response = ctx.getResponse();
         const request = ctx.getRequest();
         const status = exception?.getStatus();
-        response
-            .status(status)
-            .json({
+        response.status(status).json({
             timestamp: new Date().toISOString(),
             path: request.url,
-            response: exception["response"]
+            response: exception['response'],
         });
     }
 };

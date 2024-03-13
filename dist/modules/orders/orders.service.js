@@ -26,7 +26,9 @@ let OrdersService = class OrdersService {
         this.productRepository = productRepository;
     }
     async create(createOrderDto) {
-        let product = await this.productRepository.findBy({ "id": createOrderDto.productId });
+        let product = await this.productRepository.findBy({
+            id: createOrderDto.productId,
+        });
         if (product.length == 0)
             throw new common_1.NotFoundException(`Product Not Found For ID:${createOrderDto.productId}`);
         let order = new order_entity_1.Order();
@@ -38,20 +40,26 @@ let OrdersService = class OrdersService {
         return this.oderRepository.save(order);
     }
     findAll() {
-        return this.oderRepository.find({ relations: {
-                product: true,
-                user: true
-            } });
+        return this.oderRepository.find();
     }
     findOne(id) {
-        return this.oderRepository.findBy({ "orderID": id });
+        return this.oderRepository.findBy({ orderID: id });
     }
     async update(id, updateOrderDto) {
         let order = new order_entity_1.Order();
         order.orderID = id;
+        let order_old = await this.oderRepository.find({
+            where: { orderID: id },
+            relations: {
+                user: true,
+                product: true,
+            },
+        });
+        if (order_old.length == 0)
+            throw new common_1.NotFoundException(`Order Id:${id} is Not Valid.`);
         order.qty = updateOrderDto.qty;
-        order.price = updateOrderDto.price;
-        order.total = updateOrderDto.qty * updateOrderDto.price;
+        order.price = order_old[0].product.price;
+        order.total = updateOrderDto.qty * order_old[0].product.price;
         return this.oderRepository.save(order);
     }
     remove(id) {
@@ -64,6 +72,7 @@ exports.OrdersService = OrdersService = __decorate([
     __param(0, (0, common_1.Inject)(core_1.REQUEST)),
     __param(1, (0, typeorm_1.InjectRepository)(order_entity_1.Order)),
     __param(2, (0, typeorm_1.InjectRepository)(product_entity_1.Product)),
-    __metadata("design:paramtypes", [Object, typeorm_2.Repository, typeorm_2.Repository])
+    __metadata("design:paramtypes", [Object, typeorm_2.Repository,
+        typeorm_2.Repository])
 ], OrdersService);
 //# sourceMappingURL=orders.service.js.map

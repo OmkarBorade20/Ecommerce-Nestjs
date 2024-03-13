@@ -21,7 +21,7 @@ exports.CommentsModule = CommentsModule = __decorate([
     (0, common_1.Module)({
         imports: [typeorm_1.TypeOrmModule.forFeature([product_entity_1.Product, user_entity_1.User, comment_entity_1.Comment])],
         controllers: [comments_controller_1.CommentsController],
-        providers: [comments_service_1.CommentsService,],
+        providers: [comments_service_1.CommentsService],
     })
 ], CommentsModule);
 //# sourceMappingURL=comments.module.js.map

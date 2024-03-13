@@ -17,7 +17,7 @@ class UpdateProductDto extends (0, mapped_types_1.PartialType)(create_product_dt
 }
 exports.UpdateProductDto = UpdateProductDto;
 __decorate([
-    (0, swagger_1.ApiProperty)({ default: "Spiderman 2 PS 5" }),
+    (0, swagger_1.ApiProperty)({ default: 'Spiderman 2 PS 5' }),
     __metadata("design:type", String)
 ], UpdateProductDto.prototype, "title", void 0);
 __decorate([
@@ -25,11 +25,13 @@ __decorate([
     __metadata("design:type", Number)
 ], UpdateProductDto.prototype, "price", void 0);
 __decorate([
-    (0, swagger_1.ApiProperty)({ default: "Sony Ps5 Spiderman 2 Standard Edn." }),
+    (0, swagger_1.ApiProperty)({ default: 'Sony Ps5 Spiderman 2 Standard Edn.' }),
     __metadata("design:type", String)
 ], UpdateProductDto.prototype, "description", void 0);
 __decorate([
-    (0, swagger_1.ApiProperty)({ default: "https://m.media-amazon.com/images/I/81qBiCSoegL._SX679_.jpg" }),
+    (0, swagger_1.ApiProperty)({
+        default: 'https://m.media-amazon.com/images/I/81qBiCSoegL._SX679_.jpg',
+    }),
     __metadata("design:type", String)
 ], UpdateProductDto.prototype, "imgurl", void 0);
 //# sourceMappingURL=update-product.dto.js.map

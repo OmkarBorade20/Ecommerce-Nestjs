@@ -13,7 +13,7 @@ let TokenValidation = class TokenValidation {
     use(req, res, next) {
         let token = req?.headers['authorization']?.split(' ')[1];
         if (token == undefined)
-            throw new common_1.BadRequestException("Kindly Pass the Token in Headers.");
+            throw new common_1.BadRequestException('Kindly Pass the Token in Headers.');
         let data = (0, jsonwebtoken_1.verify)(token, process.env.JWT_TOKEN);
         req['user'] = data.data;
         next();

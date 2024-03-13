@@ -15,11 +15,11 @@ class CreateCommentDto {
 }
 exports.CreateCommentDto = CreateCommentDto;
 __decorate([
-    (0, swagger_1.ApiProperty)({ default: "Nice Product" }),
+    (0, swagger_1.ApiProperty)({ default: 'Nice Product' }),
     __metadata("design:type", String)
 ], CreateCommentDto.prototype, "comment", void 0);
 __decorate([
-    (0, swagger_1.ApiProperty)({ default: "2" }),
+    (0, swagger_1.ApiProperty)({ default: '2' }),
     __metadata("design:type", Number)
 ], CreateCommentDto.prototype, "productid", void 0);
 //# sourceMappingURL=create-comment.dto.js.map

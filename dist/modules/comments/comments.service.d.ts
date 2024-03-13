@@ -4,7 +4,7 @@ import { Repository } from 'typeorm';
 import { Comment } from './entities/comment.entity';
 import { Product } from '../products/entities/product.entity';
 import { User } from '../users/entities/user.entity';
-import { Request } from "express";
+import { Request } from 'express';
 export declare class CommentsService {
     private readonly req;
     private readonly commentRepository;

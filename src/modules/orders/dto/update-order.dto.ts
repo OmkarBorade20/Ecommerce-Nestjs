@@ -1,21 +1,12 @@
-import { ApiProperty, PartialType } from '@nestjs/swagger';
-import { CreateOrderDto } from './create-order.dto';
+import { ApiProperty } from '@nestjs/swagger';
 
-export class UpdateOrderDto extends PartialType(CreateOrderDto) {
+export class UpdateOrderDto {
+  // @ApiProperty({default: "2"})
+  // userID: number;
 
-    // @ApiProperty({default: "2"})
-    // userID: number;
+  // @ApiProperty({default: "2"})
+  // productId: number;
 
-    // @ApiProperty({default: "2"})
-    // productId: number;
-
-    @ApiProperty({default: "2"})
-    qty: number;
-
-    @ApiProperty({default: "2"})
-    price: number;
-
-    @ApiProperty({default: "2"})
-    total: number;
+  @ApiProperty({ default: '2' })
+  qty: number;
 }
-

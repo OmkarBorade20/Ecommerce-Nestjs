@@ -17,10 +17,8 @@ const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const product_entity_1 = require("./entities/product.entity");
 const typeorm_2 = require("typeorm");
-const cache_manager_1 = require("@nestjs/cache-manager");
 let ProductsService = class ProductsService {
-    constructor(cacheManager, productRepo) {
-        this.cacheManager = cacheManager;
+    constructor(productRepo) {
         this.productRepo = productRepo;
     }
     create(createProductDto) {
@@ -33,13 +31,15 @@ let ProductsService = class ProductsService {
         return this.productRepo.save(product);
     }
     findAll() {
-        console.log("First");
-        return this.productRepo.find({ relations: {
-                comments: true
-            } });
+        console.log('First');
+        return this.productRepo.find({
+            relations: {
+                comments: true,
+            },
+        });
     }
     findOne(id) {
-        return this.productRepo.findBy({ "id": id });
+        return this.productRepo.findBy({ id: id });
     }
     update(id, updateProductDto) {
         let product = new product_entity_1.Product();
@@ -52,14 +52,12 @@ let ProductsService = class ProductsService {
     }
     remove(id) {
         return this.productRepo.delete(id);
-        ;
     }
 };
 exports.ProductsService = ProductsService;
 exports.ProductsService = ProductsService = __decorate([
     (0, common_1.Injectable)(),
-    __param(0, (0, common_1.Inject)(cache_manager_1.CACHE_MANAGER)),
-    __param(1, (0, typeorm_1.InjectRepository)(product_entity_1.Product)),
-    __metadata("design:paramtypes", [Object, typeorm_2.Repository])
+    __param(0, (0, typeorm_1.InjectRepository)(product_entity_1.Product)),
+    __metadata("design:paramtypes", [typeorm_2.Repository])
 ], ProductsService);
 //# sourceMappingURL=products.service.js.map

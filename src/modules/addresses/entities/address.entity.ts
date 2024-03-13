@@ -8,7 +8,6 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-
 @Entity()
 export class Address {
   @PrimaryGeneratedColumn()
@@ -36,9 +35,9 @@ export class Address {
   update_on?: Date;
 
   @Column()
-  isActive?:number;
+  isActive?: number;
 
   //bidirectional Mapping.
-  @ManyToOne(()=>User,(user)=>user.addresses )
-  user?:User
+  @ManyToOne(() => User, (user) => user.addresses)
+  user?: User;
 }

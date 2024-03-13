@@ -1,54 +1,55 @@
-import { Inject, Injectable } from '@nestjs/common';
+import {  Injectable } from '@nestjs/common';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Product } from './entities/product.entity';
 import { Repository } from 'typeorm';
-import { ProductRepository } from './repo/product.repository';
-import { CACHE_MANAGER } from '@nestjs/cache-manager';
 import { Cron } from '@nestjs/schedule';
 
 @Injectable()
 export class ProductsService {
-
-  constructor (@Inject(CACHE_MANAGER) private cacheManager,@InjectRepository(Product) private readonly productRepo:Repository<Product>){}
-//constructor(private readonly productRepo :ProductRepository){}
+  constructor(
+    @InjectRepository(Product)
+    private readonly productRepo: Repository<Product>,
+  ) {}
+  //constructor(private readonly productRepo :ProductRepository){}
 
   create(createProductDto: CreateProductDto) {
-    let product=new Product()
-    product.title=createProductDto.title;
-    product.description=createProductDto.description;
-    product.imgurl=createProductDto.imgurl;
-    product.price=createProductDto.price;
-    product.comments=[];
+    let product = new Product();
+    product.title = createProductDto.title;
+    product.description = createProductDto.description;
+    product.imgurl = createProductDto.imgurl;
+    product.price = createProductDto.price;
+    product.comments = [];
 
     return this.productRepo.save(product);
   }
 
-  findAll():Promise<Product[]> {
-    console.log("First")
-    return this.productRepo.find({relations:{
-      comments:true
-    }});
+  findAll(): Promise<Product[]> {
+    console.log('First');
+    return this.productRepo.find({
+      relations: {
+        comments: true,
+      },
+    });
   }
 
-  findOne(id: number):Promise<Product[]> {
-    return this.productRepo.findBy({"id":id});
+  findOne(id: number): Promise<Product[]> {
+    return this.productRepo.findBy({ id: id });
   }
 
   update(id: number, updateProductDto: UpdateProductDto) {
-    let product=new Product()
-    product.title=updateProductDto.title;
-    product.description=updateProductDto.description;
-    product.imgurl=updateProductDto.imgurl;
-    product.price=updateProductDto.price;
-    product.id=id
+    let product = new Product();
+    product.title = updateProductDto.title;
+    product.description = updateProductDto.description;
+    product.imgurl = updateProductDto.imgurl;
+    product.price = updateProductDto.price;
+    product.id = id;
     return this.productRepo.save(product);
- 
   }
 
   remove(id: number) {
-    return this.productRepo.delete(id);;
+    return this.productRepo.delete(id);
   }
 
   // @Cron('10 * * * * *')
